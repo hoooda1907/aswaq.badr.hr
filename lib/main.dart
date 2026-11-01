@@ -174,7 +174,7 @@ class _EmpState extends State<EmployeeHome> {
       if (perm == LocationPermission.denied || perm == LocationPermission.deniedForever) {
         throw 'برجاء السماح للتطبيق باستخدام الموقع';
       }
-      final pos = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(accuracy: LocationAccuracy.high));
+           final pos = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       final r = await Api.call('punch', {
         'type': open ? 'OUT' : 'IN', 'lat': pos.latitude, 'lng': pos.longitude, 'mocked': pos.isMocked});
       open = r['open'] == true;
